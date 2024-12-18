@@ -1,0 +1,1755 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picto Comunica - Comunicación Alternativa</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    :root {
+      --primary: #E74C3C;    /* Red */
+      --secondary: #E67E22;  /* Orange */
+      --accent: #D35400;     /* Dark Orange */
+      --light: #ffffff;      /* Changed from #FFF3E0 to white */
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    .imagen{
+        margin-bottom: 15px;
+    }
+    body {
+      background: #ffffff;    /* Changed from var(--light) to white */
+    }
+    
+    /* Updated header styles */
+    .header {
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: visible; /* Changed from hidden to visible */
+      z-index: 100; /* Added z-index to create stacking context */
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% -50%,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 30%,
+        transparent 70%);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-image {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+      transition: all 0.3s ease;
+    }
+    
+  
+    
+    .nav-menu {
+      margin-left: auto; /* This will push the menu to the right */
+      display: flex;
+      gap: 2rem;
+      align-items: center; /* Center items vertically */
+    }
+    
+    .nav-item {
+      position: relative;
+      padding: 1rem 1.5rem;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-radius: 25px;
+      z-index: 1001; /* Added z-index to ensure it's above other elements */
+    }
+    
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+    
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 250px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      z-index: 1000; /* Increased z-index to ensure it appears on top */
+      padding: 1.2rem;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      border-top: 4px solid #f53a3a;
+    }
+    
+    .nav-item:hover .dropdown {
+      display: block;
+      transform: translateY(0);
+    }
+    
+    .dropdown-content {
+      color: #333;
+      line-height: 1.6;
+      font-size: 0.8rem;
+    }
+    
+    .dropdown-content ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem 0;
+    }
+    
+    .dropdown-content li {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    
+    .dropdown-content li:before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+    }
+    
+    .dropdown h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .contact-btn {
+      margin-left: auto; /* This will push it all the way to the right */
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .contact-btn:hover {
+      background: white;
+      color: #f53a3a;
+      transform: translateY(-2px);
+      border-color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px; /* Adjusted to be below header */
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        z-index: 999;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      
+      .nav-menu.show {
+        display: flex;
+      }
+      
+      .nav-item {
+        color: var(--primary) !important; /* Make text visible on white background */
+      }
+    
+      .dropdown {
+        position: static;
+        display: none;
+        width: 100%;
+        margin-top: 1rem;
+      }
+    
+      .nav-item:hover .dropdown {
+        display: block;
+      }
+    
+      .mobile-menu-toggle {
+        display: block;
+      }
+    
+      .mobile-menu-toggle svg path {
+        stroke: var(--secondary);
+        stroke-width: 3px;
+      }
+    
+      .contact-btn {
+        margin: 1rem auto;
+        width: fit-content;
+      }
+    
+      .section-title {
+        font-size: 1.8rem; /* Smaller section titles on mobile */
+      }
+      
+      .intro-title {
+        font-size: 1.8rem;
+      }
+      
+      .intro-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      
+      .service-card h3 {
+        font-size: 1.1rem;
+      }
+      
+      .service-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+    }
+    
+    .mobile-menu-toggle {
+      background: transparent;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      display: none;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .mobile-menu-toggle svg {
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-toggle:hover svg {
+      transform: scale(1.1);
+    }
+    
+    .mobile-menu-toggle svg path {
+      stroke: white;
+      stroke-width: 3px;
+    }
+    
+    /* Hero styles and other sections remain unchanged */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1603354350317-6f7aaa5911c5?auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .hero::before {
+      display: none; /* This will hide the color overlay */
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+      background: rgba(0,0,0,0.3); /* Adding a slight dark background to ensure text readability */
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .hero h1 {
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Enhanced text shadow for better readability */
+    }
+    
+    .sections {
+      padding: 3rem 2rem; /* Reduced from 6rem to 4rem */
+      background: white;
+    }
+    
+    .sections:nth-child(even) {
+      background: #ffffff;    /* Changed from var(--light) to white */
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem; /* Reduced from 3rem to 2rem */
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      border-radius: 2px;
+    }
+    
+    .section-title:hover {
+      transform: scale(1.05);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* New Intro Section styling */
+    .intro-section {
+      padding: 3rem 2rem; /* Reduced from 4rem to 3rem */
+      background: white;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .intro-title {
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .intro-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      border-radius: 2px;
+    }
+    
+    .intro-text {
+      display: grid;
+      gap: 1.5rem;
+      line-height: 1.8;
+      color: #444;
+      font-size: 1.1rem;
+    }
+    
+    .intro-text p {
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .intro-text p.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Add different delay for each paragraph */
+    .intro-text p:nth-child(1) {
+      transition-delay: 0.3s;
+    }
+    
+    .intro-text p:nth-child(2) {
+      transition-delay: 0.6s;
+    }
+    
+    .intro-text p:nth-child(3) {
+      transition-delay: 0.9s;
+    }
+    
+    /* Services styling */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; /* Reduced from 2rem to 1.5rem */
+      padding: 1.5rem; /* Reduced from 2rem to 1.5rem */
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      background: linear-gradient(145deg, #ffffff, #f8f8f8);
+      border: none;
+      padding: 1.0rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid transparent;
+    }
+    
+    .service-card:nth-child(1) {
+      border-top-color: #E74C3C;
+    }
+    
+    .service-card:nth-child(2) {
+      border-top-color: #E74C3C;
+    }
+    
+    .service-card:nth-child(3) {
+      border-top-color:#E74C3C;
+    }
+    .service-card:nth-child(4) {
+      border-top-color:#E74C3C;
+    }
+    
+    .service-card .service-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+      filter: none;
+    }
+    
+    .service-card:hover .service-icon {
+      transform: scale(1.15) rotate(8deg);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(231, 76, 60, 0.2);
+    }
+    
+    /* Add responsive breakpoints */
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Testimonials styling */
+    .testimonials {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      padding: 0 40px;
+      margin-top: 1rem; /* Added to reduce space from title */
+    }
+    
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      transition: transform 0.5s ease;
+    }
+    
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .testimonial-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-card p {
+      font-style: italic;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 992px) {
+      .testimonials-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .testimonial-card {
+        margin: 0 auto;
+        width: 90%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .testimonials-container {
+        grid-template-columns: 1fr;
+      }
+      .testimonial-card {
+        width: 85%;
+        padding: 12px;
+        font-size: 14px;
+      }
+      .carousel-btn {
+        width: 5px;
+        height: 5px;
+        font-size: 12px;
+      }
+      .section-title{
+        font-size: 29px;
+        
+      }
+     
+    }
+    
+    /* FAQ styling */
+    .faq-container {
+      max-width: 1200px;  /* Increased from 800px to accommodate two columns */
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem; /* Slightly reduced gap */
+    }
+    
+    .faq-item {
+      margin-bottom: 1.2rem; /* Reduced from 1.2rem */
+      border-radius: 12px; /* Slightly reduced */
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border-left: 4px solid #E74C3C;
+      background: white;
+    }
+    
+    .faq-question {
+      padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      line-height: 1.4;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: #E74C3C;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-question.active::after {
+      transform: translateY(-50%) rotate(45deg);
+    }
+    
+    .faq-answer {
+      padding: 0 1.8rem;
+      line-height: 1.8;
+      color: #555;
+      font-size: 0.95rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .faq-answer.show {
+      max-height: 800px; /* Increased to accommodate more content */
+      padding: 1.8rem;
+      border-top: 2px solid rgba(231, 76, 60, 0.1);
+    }
+    
+    .footer {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 2rem 2rem; /* Reduced from 4rem to 3rem */
+      position: relative;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-section h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      border-radius: 2px;
+    }
+    
+    .footer-section p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-section ul li a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+    
+    .footer-section ul li a:hover {
+      opacity: 1;
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      color: white;
+      transition: all 0.3s ease;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .social-links a:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .social-links svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-bottom p {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    .par{
+      font-size: 1.1rem;
+    }
+    @media (max-width: 768px) {
+        .imagen{
+        margin-bottom: 15px;
+        width: 220px;
+        
+    }
+  
+      .footer {
+        padding: 3rem 1rem 1.5rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+      .faq-container {
+    display: flex;
+    flex-wrap: nowrap; /* Asegura que los elementos estén en una sola columna */
+    flex-direction: column; /* Garantiza una disposición vertical */
+  }
+
+  .faq-item {
+    width: 100%; /* Fuerza a los elementos a ocupar todo el ancho */
+    flex: none; /* Desactiva el comportamiento de flex para garantizar el ajuste correcto */
+  }
+  .par{
+      font-size: 18;     }
+    }
+    
+    /* Add this CSS for the WhatsApp button */
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .whatsapp-button:hover {
+      transform: scale(1.1);
+      background: #128C7E;
+    }
+    
+    .whatsapp-icon {
+      width: 35px;
+      height: 35px;
+      fill: white;
+    }
+    
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .carousel-btn:hover {
+      background: var(--secondary);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .carousel-btn.prev {
+      left: 10px;
+    }
+    
+    .carousel-btn.next {
+      right: 10px;
+    }
+    
+    /* New Call-to-Action Section Style */
+    .call-to-action {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .call-to-action h3 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .call-to-action p {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .call-to-action a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: #25D366;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .call-to-action a:hover {
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important;
+    }
+     /* New Call-to-Action Section Style */
+     .call-to-action {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .call-to-action h3 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .call-to-action p {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .call-to-action a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: #25D366;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .call-to-action a:hover {
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Add these styles to the existing <style> section */
+    .form-control:focus {
+      border-color: #f53a3a !important;
+      box-shadow: 0 0 0 0.25rem rgba(245, 58, 58, 0.25) !important;
+    }
+    
+    /* Update the input styles */
+    .form-control {
+      border: 1px solid #151515;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    .form-control:hover {
+      border-color: #f53a3a;
+    }
+    
+    /* Style for invalid inputs */
+    .form-control.is-invalid:focus {
+      border-color: #f53a3a !important;
+      box-shadow: 0 0 0 0.25rem rgba(245, 58, 58, 0.25) !important;
+    }
+     /* Update alert container styles */
+     .alert-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto 0; /* Changed from 2rem auto to add bottom margin */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.5s ease-in-out;
+      position: relative; /* Add this */
+      z-index: 1000; /* Add this */
+    }
+    
+    .alert-container.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .custom-alert {
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .alert-icon {
+      background: rgba(255,255,255,0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .alert-message h4 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    
+    .alert-message p {
+      margin: 0.5rem 0 0;
+      opacity: 0.9;
+    }
+      /* Add these styles to the existing <style> section */
+        .form-control:focus {
+      border-color: #f53a3a !important;
+      box-shadow: 0 0 0 0.25rem rgba(208, 16, 16, 0.25) !important;
+    }
+    
+    /* Update the input styles */
+    .form-control {
+      border: 1px solid #ced4da;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    .form-control:hover {
+      border-color: #f53a3a;
+    }
+    
+    /* Style for invalid inputs */
+    .form-control.is-invalid:focus {
+      border-color: #f53a3a !important;
+      box-shadow: 0 0 0 0.25rem rgba(245, 58, 58, 0.25) !important;
+    }
+    
+   /* Estilos para los botones fijos */
+.fixed-buttons {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.fixed-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, #f53a3a, #FFB347);
+  color: white; /* El texto e íconos son blancos */
+  text-decoration: none;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.fixed-button:hover {
+  background: linear-gradient(45deg, #FFB347, #f53a3a);
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip que aparece al pasar el mouse */
+.fixed-button .tooltip {
+  position: absolute;
+  top: 50%;
+  left: -120%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.fixed-button:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(-10px);
+}
+
+/* Ícono dentro del botón */
+.fixed-button .icon {
+  color: white; /* Los íconos son blancos */
+ 
+}
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .fixed-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .fixed-button .tooltip {
+    font-size: 0.8rem;
+  }
+  .par{
+      font-size: 15px;
+    }
+   .ae{
+    display: none;
+   }
+}
+
+    </style>
+    </head>
+    <body>
+      <header class="header">
+        <div class="logo">
+      
+          <svg class="logo-image" viewBox="0 0 200 200">
+            <rect x="40" y="40" width="120" height="100" rx="20" fill="#FFD93D" stroke="#333" stroke-width="4"/>
+            
+            <g>
+              <line x1="40" y1="80" x2="20" y2="60" stroke="#333" stroke-width="4" stroke-linecap="round">
+                <animate attributeName="y2" 
+                         values="60;40;60"
+                         dur="1s"
+                         repeatCount="indefinite"/>
+              </line>
+            </g>
+        
+            <g>
+              <line x1="160" y1="80" x2="180" y2="60" stroke="#333" stroke-width="4" stroke-linecap="round">
+                <animate attributeName="y2" 
+                         values="60;40;60"
+                         dur="1s"
+                         repeatCount="indefinite"/>
+              </line>
+            </g>
+            
+            <g class="eyes">
+              <circle cx="80" cy="80" r="16" fill="#fff" stroke="#333" stroke-width="3"/>
+              <circle cx="120" cy="80" r="16" fill="#fff" stroke="#333" stroke-width="3"/>
+              <circle cx="80" cy="80" r="8" fill="#333">
+                <animate attributeName="cy" values="80;75;80" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="120" cy="80" r="8" fill="#333">
+                <animate attributeName="cy" values="80;75;80" dur="2s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+            
+            <line x1="100" y1="40" x2="100" y2="20" stroke="#333" stroke-width="4"/>
+            <circle cx="100" cy="16" r="8" fill="#FFB347"/>
+            
+            <path d="M70 110 Q100 130 130 110" fill="none" stroke="#333" stroke-width="4" stroke-linecap="round">
+              <animate attributeName="d" 
+                       values="M70 110 Q100 130 130 110;M70 110 Q100 140 130 110;M70 110 Q100 130 130 110" 
+                       dur="2s" 
+                       repeatCount="indefinite"/>
+            </path>
+            
+            <circle cx="40" cy="140" r="10" fill="#FFB347" opacity="0.6"/>
+            <circle cx="160" cy="140" r="10" fill="#FFB347" opacity="0.6"/>
+          </svg>
+
+          <span>PictoComunica</span>
+        </div>
+        <button class="mobile-menu-toggle">
+          
+        </button>
+        <nav class="nav-menu">
+          <div class="nav-item">
+            Autismo
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <h4>¿Qué es el TEA?</h4>
+                <p>El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo que afecta la comunicación social y el comportamiento. Se caracteriza por diferentes niveles de dificultad en la interacción social, comunicación verbal y no verbal.</p>
+                <h4>Características del TEA</h4>
+                <ul>
+                  <li>Dificultades en la comunicación e interacción social</li>
+                  <li>Patrones repetitivos de comportamiento</li>
+                  <li>Intereses específicos y restringidos</li>
+                  <li>Sensibilidad sensorial</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="nav-item">
+            Qué Hacemos
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <h4>Nuestro Sistema de Comunicación</h4>
+                <p>Desarrollamos tableros de comunicación personalizados que ayudan a niños con TEA a expresarse mejor:</p>
+                <ul>
+                  <li>Pictogramas adaptados a cada necesidad</li>
+                  <li>Tableros interactivos fáciles de usar</li>
+                  <li>Sistema progresivo de aprendizaje</li>
+                  <li>Seguimiento del progreso</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="nav-item">
+            Nosotros
+            <div class="dropdown">
+              <div class="dropdown-content">
+                <h4>Nuestro Compromiso</h4>
+                <p>Somos un equipo dedicado a mejorar la calidad de vida de personas con TEA y sus familias a través de herramientas de comunicación innovadoras.</p>
+                <h4>Equipo Profesional</h4>
+                <ul>
+                  <li>Terapeutas ocupacionales</li>
+                  <li>Psicólogos especializados</li>
+                  <li>Desarrolladores de tecnología asistiva</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <a href="" class="contact-btn">Contáctanos</a>
+        </nav>
+      </header>
+    
+      <!-- Botones fijos a la derecha -->
+      <div class="fixed-buttons">
+        <a href="#services" class="fixed-button">
+          <i class="fas fa-bullseye icon"></i>
+          <span class="tooltip">Objetivos</span>
+        </a>
+        <a href="#app-info" class="fixed-button">
+          <i class="fas fa-icons icon"></i>
+          <span class="tooltip">Pictogramas</span>
+        </a>
+        <a href="#faq" class="fixed-button">
+          <i class="fas fa-question-circle icon"></i>
+          <span class="tooltip">Preguntas</span>
+        </a>
+      </div>
+      <section class="hero">
+        <div class="hero-content">
+          <h2 >Juntos en el Camino del Autismo</h2>
+          <p>Brindando apoyo, comprensión y herramientas de comunicación para familias con TEA</p>
+        </div>
+      </section>
+    
+      <section class="intro-section">
+        <h2 class="intro-title fw-bold">Unidos por la Comprensión y el Amor</h2>
+        <div class="intro-text">
+          <p>El autismo es una condición que nos invita a ver el mundo desde una perspectiva única y especial. Cada niño con TEA tiene su propia forma de percibir, sentir y expresarse, y es nuestra responsabilidad como sociedad crear un entorno que les permita desarrollar todo su potencial. El acompañamiento temprano y constante es fundamental para su desarrollo, permitiéndoles construir puentes de comunicación con el mundo que les rodea.</p>
+          
+          <p>La concientización sobre el TEA es crucial para construir una sociedad más inclusiva y comprensiva. Es importante entender que el autismo no es una enfermedad, sino una forma diferente de procesar el mundo. Cada persona con TEA es única, con sus propios talentos, desafíos y necesidades específicas. La educación y la sensibilización de la comunidad son pilares fundamentales para derribar barreras y prejuicios, creando espacios donde todos puedan participar y desarrollarse plenamente.</p>
+          
+          <p>En este camino, el papel de las familias, educadores y profesionales es vital. El trabajo conjunto y coordinado, junto con el uso de herramientas de comunicación adaptadas, permite crear un ambiente de apoyo y comprensión que favorece el desarrollo integral de los niños con TEA. La intervención temprana, el amor, la paciencia y el compromiso son elementos clave para construir un futuro donde cada persona con autismo pueda encontrar su lugar y expresar su verdadero potencial.</p>
+        </div>
+      </section>
+    
+      <section class="sections" id="services">
+        <h2 class="section-title fw-bold">Nuestros Objetivos</h2>
+        <div class="services-grid">
+          <div class="service-card"> 
+            <svg class="service-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <!-- Parte superior del sombrero -->
+                <polygon points="32,10 10,20 32,30 54,20" fill="#4CAF50" />
+                
+                <!-- Base del sombrero -->
+                <rect x="22" y="30" width="20" height="6" fill="#2E7D32" />
+        
+                <!-- Borla del sombrero -->
+                <line x1="32" y1="30" x2="32" y2="40" stroke="#FFC107" stroke-width="2" />
+                <circle cx="32" cy="40" r="2" fill="#FFC107" />
+            </svg>
+            <h3>Curso de Acompañante Terapéutico</h3>
+            <p>Formación especializada en autismo para brindar apoyo integral a personas con TEA y sus familias. Aprende técnicas prácticas y teoría actualizada.</p>
+        </div>
+          <div class="service-card">
+            <svg class="service-icon" viewBox="0 0 24 24">
+              <path fill="#FFB347" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+            </svg>
+            <h3>Apoyo y Asesoramiento</h3>
+            <p>Brindamos orientación y soporte continuo a personas con TEA y sus familias, creando una red de apoyo sólida y comprensiva.</p>
+          </div>
+    
+          <div class="service-card">
+            <svg class="service-icon" viewBox="0 0 24 24">
+              <path fill="#f53a3a" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <h3>Inclusión Social</h3>
+            <p>Trabajamos para conectar a las personas con TEA con la sociedad, fomentando la comprensión y la aceptación en todos los ámbitos.</p>
+          </div>
+    
+          <div class="service-card">
+            <svg class="service-icon" viewBox="0 0 24 24">
+              <path fill="#4CAF50" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+            <h3>Formación y Aprendizaje</h3>
+            <p>Desarrollamos programas educativos y herramientas de comunicación adaptadas para potenciar el desarrollo personal.</p>
+          </div>
+          
+        
+        
+        </div>
+        
+      </section>
+    
+      <section class="sections" id="app-info">
+        <h2 class="section-title fw-bold">Nuestra Aplicación de Comunicación</h2>
+        <div style="max-width: 1050px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+          <p style=" line-height: 1.8; margin-bottom: 2rem; color: #444;" class="par">
+            PictoComunica es una innovadora aplicación diseñada específicamente para niños con TEA, 
+            que facilita la comunicación mediante un sistema intuitivo de pictogramas y tableros 
+            personalizables. Nuestra herramienta ayuda a expresar necesidades, emociones y deseos, 
+            fortaleciendo los lazos comunicativos entre los niños y su entorno. <br>
+            Adapta los tableros según las necesidades específicas de cada niño,
+            interfaz amigable y fácil de usar tanto para niños como para cuidadores, 
+            Crece y se adapta al desarrollo y progreso del niño
+          </p>
+         
+          
+     
+       
+          <!-- New Call-to-Action Section -->
+          <div class="call-to-action">
+            
+            <h3 class="fw-bold">¡Comienza Tu Experiencia con PictoComunica!</h3>
+            <p class="par">Descubre cómo nuestra aplicación puede transformar la comunicación de tu ser querido. Contáctanos ahora para una demostración personalizada.</p>
+            <img class="imagen" src="./imagenes/pictoca.PNG" alt="" width="800">
+            <a class="pictowt" href="https://wa.me/542616246767" 
+               target="_blank" 
+               rel="noopener noreferrer">
+              <svg class="ae" style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="#25D366">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              Comunicate con Nosotors
+            </a>
+        
+          </div>
+         
+        </div>
+      </section>
+    
+    
+      <section class="sections" id="faq">
+        <h2 class="section-title fw-bold">Preguntas Frecuentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">¿Cuáles son los primeros signos del TEA que debo observar?</div>
+                <div class="faq-answer">
+                    Los primeros signos pueden incluir:
+                    - Poco o nulo contacto visual
+                    - No responde cuando se le llama por su nombre
+                    - Dificultad para expresar necesidades
+                    - Retraso en el desarrollo del lenguaje
+                    - Movimientos repetitivos
+                    - Dificultad para socializar con otros niños
+                    Es importante consultar con un profesional si observas estos signos.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿A qué edad se puede diagnosticar el TEA?</div>
+                <div class="faq-answer">
+                    Aunque cada caso es único, los primeros signos del TEA pueden detectarse entre los 18 meses y 2 años de edad. Un diagnóstico confiable puede realizarse alrededor de los 2 años por profesionales especializados. La detección temprana es crucial para comenzar las intervenciones necesarias lo antes posible.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿El TEA tiene cura?</div>
+                <div class="faq-answer">
+                    El TEA no tiene cura, pero con intervención temprana y apoyo adecuado, las personas con autismo pueden desarrollar habilidades significativas y llevar una vida plena. Cada persona con TEA es única y responde de manera diferente a las distintas terapias y tratamientos.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Qué terapias son recomendadas para el TEA?</div>
+                <div class="faq-answer">
+                    Las terapias más recomendadas incluyen:
+                    - Terapia conductual ABA
+                    - Terapia ocupacional
+                    - Terapia del lenguaje
+                    - Terapias de integración sensorial
+                    - Intervenciones de comunicación alternativa
+                    El plan de tratamiento debe ser personalizado según las necesidades específicas de cada persona.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿Cómo puedo ayudar a mi hijo con TEA en casa?</div>
+                <div class="faq-answer">
+                    Puedes ayudar mediante:
+                    - Establecer rutinas claras y consistentes
+                    - Usar apoyos visuales para la comunicación
+                    - Crear un ambiente sensorial apropiado
+                    - Fomentar la comunicación mediante juegos
+                    - Celebrar los logros, por pequeños que sean
+                    - Mantener una comunicación constante con terapeutas y educadores
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">¿El TEA afecta la inteligencia de la persona?</div>
+                <div class="faq-answer">
+                    El TEA no determina el nivel de inteligencia. Las personas con autismo pueden tener diferentes niveles de capacidad intelectual, desde dificultades de aprendizaje hasta capacidades superiores en áreas específicas. Muchas personas con TEA tienen habilidades extraordinarias en áreas como matemáticas, música, arte o memoria.
+                </div>
+            </div>
+        </div>
+      </section>
+      
+
+      <section class="sections" id="testimonials">
+        <h2 class="section-title fw-bold testimonos">Testimonios</h2>
+        <div class="testimonials">
+          <div class="testimonials-container">
+            <div class="testimonial-card">
+              <h3>Ana Rodríguez</h3>
+              <p>"Como madre de un niño con TEA, encontrar esta comunidad ha sido fundamental. Las herramientas de comunicación han transformado nuestra vida diaria."</p>
+            </div>
+            <div class="testimonial-card">
+              <h3>Dr. Carlos Méndez</h3>
+              <p>"Como profesional en TEA, valoro enormemente el enfoque integral y el compromiso con el desarrollo de habilidades comunicativas en cada persona."</p>
+            </div>
+            <div class="testimonial-card">
+              <h3>Elena Torres</h3>
+              <p>"El apoyo y la guía que hemos recibido han sido invaluables. Mi hijo ha progresado significativamente en su comunicación y socialización."</p>
+            </div>
+            <div class="testimonial-card">
+              <h3>María González</h3>
+              <p>"La aplicación ha sido una herramienta transformadora para mi hijo. Ahora puede expresar sus necesidades de manera más efectiva."</p>
+            </div>
+            <div class="testimonial-card">
+              <h3>Prof. Laura Sánchez</h3>
+              <p>"Como educadora especial, he visto resultados extraordinarios usando PictoComunica en el aula. Es una herramienta verdaderamente inclusiva."</p>
+            </div>
+            <div class="testimonial-card">
+              <h3>Pablo Martínez</h3>
+              <p>"El cambio en la comunicación de mi hija ha sido notable. La aplicación es intuitiva y se adapta perfectamente a sus necesidades."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- New Contact Section -->
+      <section class="sections" id="contact">
+        <h2 class="section-title fw-bold">Comunícate con Nosotros</h2>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="contact-form-container" style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.661);">
+                <form id="contactForm" class="needs-validation" novalidate>
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre y Apellido</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese su nombre y apellido
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">
+                      Por favor ingrese un email válido
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="consulta" class="form-label">Su Consulta</label>
+                    <textarea class="form-control" id="consulta" rows="4" required></textarea>
+                    <div class="invalid-feedback">
+                      Por favor ingrese su consulta
+                    </div>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary w-100 " style="background: linear-gradient(45deg, #f53a3a, #FFB347); border: none; padding: 12px; font-size: 1.1rem; font-weight: bold;">
+                    Enviar Consulta
+                  </button>
+                </form>
+              </div>
+              <div class="alert-container ">
+                <div class="custom-alert">
+                  <div class="alert-icon">✓</div>
+                  <div class="alert-message">
+                    <h4>¡Gracias por tu mensaje!</h4>
+                    <p>En breve nos comunicaremos contigo.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer mt-0">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Picto Comunica</h3>
+            <p>Transformando la comunicación alternativa para hacer un mundo más inclusivo.</p>
+            <div class="social-links">
+              <a href="https://facebook.com/pictocomunica" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+              </a>
+              <a href="https://instagram.com/pictocomunica" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="currentColor" d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465C15.056 21.99 14.717 22 12 22c-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.247-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.637-.247 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0z"/>
+                </svg>
+              </a>
+              <a href="https://youtube.com/pictocomunica" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="footer-section">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+              <li><a href="https://pictocomunica.com/servicios">Servicios</a></li>
+              <li><a href="https://pictocomunica.com/planes">Planes</a></li>
+              <li><a href="https://pictocomunica.com/recursos">Recursos</a></li>
+              <li><a href="https://pictocomunica.com/blog">Blog</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-section">
+            <h3>Soporte</h3>
+            <ul>
+              <li><a href="https://pictocomunica.com/faq">FAQ</a></li>
+              <li><a href="https://pictocomunica.com/contacto">Contacto</a></li>
+              <li><a href="https://pictocomunica.com/tutorial">Tutorial</a></li>
+              <li><a href="https://pictocomunica.com/ayuda">Ayuda</a></li>
+            </ul>
+          </div>
+    
+          <div class="footer-section">
+            <h3>Legal</h3>
+            <ul>
+              <li><a href="https://pictocomunica.com/terminos">Términos y Condiciones</a></li>
+              <li><a href="https://pictocomunica.com/privacidad">Política de Privacidad</a></li>
+              <li><a href="https://pictocomunica.com/cookies">Política de Cookies</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>© 2024 Picto Comunica. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    
+      <a href="https://wa.me/542616246767" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+      </a>
+      <script>
+        // Updated FAQ JavaScript
+        document.querySelectorAll('.faq-question').forEach(question => {
+          question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            
+            // Close all other answers first
+            document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+              if (otherAnswer !== answer && otherAnswer.classList.contains('show')) {
+                otherAnswer.classList.remove('show');
+                otherAnswer.previousElementSibling.classList.remove('active');
+              }
+            });
+            
+            // Toggle current answer
+            answer.classList.toggle('show');
+            question.classList.toggle('active');
+          });
+        });
+        
+        // Add hover effect
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateY(-3px)';
+          });
+          
+          item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateY(0)';
+          });
+        });
+        
+        // Añadir animación a los elementos de servicio
+        document.querySelectorAll('.service-card').forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+            const icon = card.querySelector('.service-icon');
+            icon.style.transform = 'scale(1.15) rotate(5deg)';
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+            const icon = card.querySelector('.service-icon');
+            icon.style.transform = 'scale(1) rotate(0)';
+          });
+        });
+        
+        // Mobile menu toggle functionality 
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navMenu.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            navMenu.classList.remove('show');
+          }
+        });
+        
+        // Update checkResponsive function
+        function checkResponsive() {
+          if (window.innerWidth <= 768) {
+            mobileMenuToggle.style.display = 'block';
+            if (!navMenu.classList.contains('show')) {
+              navMenu.style.display = 'none';
+            }
+          } else {
+            mobileMenuToggle.style.display = 'none';
+            navMenu.style.display = 'flex';
+          }
+        }
+        
+        window.addEventListener('resize', checkResponsive);
+        checkResponsive();
+        
+        // Enhance contact button interaction
+        const contactBtn = document.querySelector('.contact-btn');
+        contactBtn.addEventListener('mouseenter', () => {
+          contactBtn.style.transform = 'scale(1.1)';
+        });
+        
+        contactBtn.addEventListener('mouseleave', () => {
+          contactBtn.style.transform = 'scale(1)';
+        });
+        
+        // Update the testimonials carousel JavaScript
+        function initTestimonialsCarousel() {
+          const container = document.querySelector('.testimonials-container');
+          const cards = document.querySelectorAll('.testimonial-card');
+          let currentSlide = 0;
+          
+          // Determine slides per view based on screen size
+          function getSlidesPerView() {
+            if (window.innerWidth > 992) return 3;
+            if (window.innerWidth > 768) return 2;
+            return 1;
+          }
+          
+          let slidesPerView = getSlidesPerView();
+          let totalSlides = Math.ceil(cards.length / slidesPerView);
+        
+          function updateSlides() {
+            cards.forEach((card, index) => {
+              const slidePosition = index - (currentSlide * slidesPerView);
+              if (slidePosition >= 0 && slidePosition < slidesPerView) {
+                card.style.display = 'block';
+                card.style.opacity = '1';
+              } else {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+              }
+            });
+          }
+        
+          // Create navigation buttons
+          const prevBtn = document.createElement('button');
+          const nextBtn = document.createElement('button');
+          prevBtn.className = 'carousel-btn prev';
+          nextBtn.className = 'carousel-btn next';
+          prevBtn.innerHTML = '❮';
+          nextBtn.innerHTML = '❯';
+          
+          const testimonialsSection = document.querySelector('.testimonials');
+          testimonialsSection.appendChild(prevBtn);
+          testimonialsSection.appendChild(nextBtn);
+        
+          prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlides();
+          });
+        
+          nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlides();
+          });
+        
+          // Auto advance slides
+          const autoAdvance = setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlides();
+          }, 5000);
+        
+          // Handle window resize
+          window.addEventListener('resize', () => {
+            const newSlidesPerView = getSlidesPerView();
+            if (newSlidesPerView !== slidesPerView) {
+              slidesPerView = newSlidesPerView;
+              totalSlides = Math.ceil(cards.length / slidesPerView);
+              currentSlide = 0;
+              updateSlides();
+            }
+          });
+        
+          // Initial display
+          updateSlides();
+        }
+        
+        // Initialize carousel when page loads
+        document.addEventListener('DOMContentLoaded', initTestimonialsCarousel);
+        
+        // Function to check if element is in viewport
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+        
+        // Get all paragraphs in intro section
+        const introParagraphs = document.querySelectorAll('.intro-text p');
+        
+        // Function to handle scroll and add animation class
+        function handleScroll() {
+          introParagraphs.forEach(paragraph => {
+            if (isElementInViewport(paragraph)) {
+              paragraph.classList.add('fade-in');
+            }
+          });
+        }
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', handleScroll);
+        
+        // Trigger initial check
+        handleScroll();
+        
+        // Update the form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('contactForm');
+          const alertContainer = document.querySelector('#contact .alert-container'); // Updated selector
+          
+          form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (!form.checkValidity()) {
+              event.stopPropagation();
+              form.classList.add('was-validated');
+            } else {
+              // Show alert container
+              alertContainer.style.visibility = 'visible';
+              alertContainer.style.display = 'block';
+              alertContainer.style.opacity = '1';
+              
+              // Scroll to the alert container
+              alertContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              
+              // Add show class after a small delay to trigger animation
+              setTimeout(() => {
+                alertContainer.classList.add('show');
+              }, 100);
+        
+              // Hide alert after 5 seconds
+              setTimeout(() => {
+                alertContainer.classList.remove('show');
+                setTimeout(() => {
+                  alertContainer.style.display = 'none';
+                  alertContainer.style.visibility = 'hidden';
+                  alertContainer.style.opacity = '0';
+                }, 500);
+              }, 5000);
+        
+              // Reset form
+              form.reset();
+              form.classList.remove('was-validated');
+            }
+          });
+        });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        </body></html>
