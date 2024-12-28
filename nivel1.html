@@ -1,0 +1,268 @@
+<html lang="en">
+<head>    
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./estilo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pictograma Interactivo</title>
+    <link rel="shortcut icon" href="./imagenes/caragrande.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .btn-return { background-color: #ff2534; color: #000; }
+        .btn-want { background-color: #33db44; color: #000; }
+        .btn-dont-want { background-color: #f0f0f0; color: #000; }
+        .btn-like { background-color: #28accd; color: #000; }
+        .btn-dislike { background-color: #ffcc25; color: #000; }
+        .btn-thanks { background-color: #f7eb65; color: #000; }
+        .btn-please { background-color: #44dfd5; color: #000; }
+        .bg-blue-pastel { background-color: #7ec1e4; color: #000; }
+        .bg-yellow-light { background: linear-gradient(45deg, #FFD93D, #FFB347);}
+        .bg-green-pastel { background-color: #43fb55; color: #000; }
+        .bg-orange { background-color: #f6ba85; color: #000; }
+        .bg-pink-pastel { background-color: #f4878f; color: #000; }
+        .bg-light-blue { background-color: #48b4cf; color: #000; }
+        .bg-light-green { background-color: #72cf44; color: #000; }
+        .bg-light-purple { background-color: #e47474; color: #000; }|
+      
+        
+        .bg-turquoise { background-color: #44dfd5; color: #000; }
+        .bg-coral-light { background-color: #f6c170; color: #000; }
+        .bg-mint { background-color: #ff3c23db; color: #000; }
+    </style>
+<body>
+
+<section class="borrar1 mt-1">
+  <div class="container-fluid mt-1">
+    <div class="row m-auto">
+      <div class="col-md-12">
+        <h5 class="fw-bold bg-yellow-light py-1 text-center">
+          <a class="borrar mx-2" href="./indexpicto.html"> 
+            <img class="fw-bold" src="./imagenes/home.svg" alt="" width="50px"> Volver al Inicio
+          </a> 
+          <img class="repro" id="reproducir-frase" class="mx-2" src="./imagenes/play-circle-outline.svg" alt="" width="60px">Reproducir
+          <img class="repro mx-2" id="limpiar-frase" src="./imagenes/trash-outline.svg" alt="" width="47px">Borrar
+           <button id="addPictogramBtn" class="btn btn-danger mx-4 fw-bold">Agregar Pictograma</button>
+          
+        </h5>
+        
+        <div class="d-flex flex-wrap mb-3 border p-1" id="phrase-container"></div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    
+
+    <div class="container-fluid general mt-1" >
+        <div class="row m-auto">
+          <div class="col col-lg-1 text-center">
+           <img src="./imagenes/portada/hola.png" alt="hola" class="pictograma n1 bg-orange-pastel" data-word="hola" width="80" id="hola1">
+           <p id="hola" class="fw-bold text-center parrafos">HOLA</p>
+         </div>
+         
+    <div class="col col-lg-1 text-center">
+        <img src="./imagenes/portada/chau.png" alt="chau" class="pictograma n1 bg-orange-pastel" data-word="chau" width="80" id="chau">
+        <p class="fw-bold text-center parrafos">CHAU</p>
+      </div>
+      
+         <div class="col  col-lg-1 text-center" >
+            <img src="./imagenes/portada/yo.png" alt="yo" class="pictograma  n1 bg-light-green" data-word="yo" width="80" id="yo1" >
+            <p id="yo"  class="fw-bold text-center parrafos">YO</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/quiero.png" alt="quiero" class="pictograma  n1 bg-yellow-light" data-word="quiero" width="80" id="quieroo">
+            <p class="fw-bold text-center parrafos">QUIERO</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/estar.png" alt="quiero" class="pictograma n1 bg-yellow-light" data-word="estoy" width="80" id="estoy">
+            <p class="fw-bold text-center parrafos">ESTOY</p>
+          </div>
+        
+       
+        <div class="col col-lg-1 text-center">
+          <img src="./imagenes/sentimientos/contento.png" alt="Feliz" class="pictograma n1 bg-blue-pastel" data-word="felíz" width="80" id="feliz"> 
+          <p class="fw-bold text-center parrafos">FELÍZ</p>
+      </div>
+      
+      <div class="col col-lg-1 text-center">
+          <img src="./imagenes/sentimientos/enfado.png" alt="Feliz" class="pictograma n1 bg-blue-pastel" data-word="enojado" width="80" id="enojado"> 
+          <p class="fw-bold text-center parrafos">ENOJADO</p>
+      </div>
+      
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/megusta.png" alt="me gusta" class="pictograma  n1 bg-blue-pastel" data-word="me gusta" width="80" id="megustaa" > 
+            <p id="megusta" class="fw-bold text-center parrafos">ME GUSTA</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/nomegusta.png" alt="no me gusta" class="pictograma n1 bg-blue-pastel" data-word="no me gusta" width="80" id="nomegustaa">
+            <p id="nomegusta1" class="fw-bold text-center parrafos">NO ME GUSTA</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/bien.png" alt="bien" class="pictograma n1 bg-light-green" data-word="bien" width="80" id="bien">
+            <p class="fw-bold text-center parrafos">BIEN</p>
+          </div>
+           <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/mal.png" alt="mal" class="pictograma n1 bg-mint" data-word="mal" width="80" id="mal">
+            <p class="fw-bold text-center parrafos">MAL</p>
+          </div>
+         
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/gracias.png" alt="gracias" class="pictograma n1 bg-blue-pastel" data-word="gracias" width="80" id="graciass">
+            <p class="fw-bold text-center parrafos">GRACIAS</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/bebidas.png" alt="gracias" class="pictograma n1 bg-light-purple" data-word="agua" width="80" id="agua">
+            <p class="fw-bold text-center parrafos">AGUA</p>
+          </div>
+          
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/alimentos.png" alt="alimentos" class="pictograma n1 bg-light-purple" data-word="comida" width="80" id="comida">
+            <p id="alimentos" class="fw-bold text-center parrafos">COMIDA</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/rutinas/iralbaño.png" alt="alimentos" class="pictograma n1 bg-yellow-light" data-word="ir al baño" width="80" id="iralbaño">
+            <p id="alimentos" class="fw-bold text-center parrafos">IR AL BAÑO</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/tener.png" alt="poner" class="pictograma bg-yellow-light" data-word="tengo" width="80"id="tengo">
+            <p class="fw-bold text-center parrafos">TENGO</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/ir.png" alt="ir" class="pictograma bg-yellow-light" data-word="ir" width="80" id="ir">
+            <p class="fw-bold text-center parrafos">IR</p>
+           </div>
+    
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/rutinas/jugar a la pelota.png" alt="alimentos" class="pictograma n1 bg-yellow-light" data-word="jugar" width="80" id="jugar">
+            <p id="alimentos" class="fw-bold text-center parrafos">JUGAR</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/sí.png" alt="sí" class="pictograma n1 btn-dont-want" data-word="sí" width="80" id="si1">
+            <p id="si" class="fw-bold text-center parrafos">SÍ</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/no.png" alt="no" class="pictograma n1 btn-dont-want" data-word="no" width="80" id="no1">
+            <p  id="no" class="fw-bold text-center parrafos">NO</p>
+          </div> 
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/comoestas.png" alt="cómo estás" class="pictograma bg-blue-pastel" data-word="cómo estás" width="80" id="comoestass">
+            <p  id="comoestas" class="fw-bold text-center parrafos1">¿CÓMO ESTÁS?</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/casa.png" alt="casa" class="pictograma  bg-light-purple" data-word="casa" width="80" id="casa" >
+            <p id="casa" class="fw-bold text-center parrafos">CASA</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/escuela.png" alt="objetos" class="pictograma  bg-light-purple" data-word="escuela" width="80" id="escuela4">
+            <p id="escuela" class="fw-bold text-center parrafos">ESCUELA</p>
+          </div>
+          <div class="col col-lg-1 text-center">
+            <img src="./imagenes/portada/amar.png" alt="Enojado" class="pictograma bg-blue-pastel" data-word="teamo" width="80" id="teamo">
+            <p class="fw-bold text-center parrafos">TE AMO</p>
+           </div>
+          
+          <section class="mt-1">
+           
+            <input type="file" id="pictogramInput" accept="image/*" style="display:none">
+            <div class="row m-auto" id="pictogramContainer">
+              <!-- Aquí se mostrarán los pictogramas existentes y los nuevos -->
+            </div>
+          </section>
+          
+          <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const addPictogramBtn = document.getElementById("addPictogramBtn");
+  const pictogramInput = document.getElementById("pictogramInput");
+  const pictogramContainer = document.getElementById("pictogramContainer");
+
+  // Cargar pictogramas desde localStorage
+  const loadPictograms = () => {
+    const storedPictograms = JSON.parse(localStorage.getItem("customPictograms")) || [];
+    storedPictograms.forEach((pictogram) => addPictogramToDOM(pictogram));
+  };
+
+  // Guardar pictograma en localStorage
+  const savePictogramToLocalStorage = (pictogram) => {
+    const storedPictograms = JSON.parse(localStorage.getItem("customPictograms")) || [];
+    storedPictograms.push(pictogram);
+    localStorage.setItem("customPictograms", JSON.stringify(storedPictograms));
+  };
+
+  // Eliminar pictograma del localStorage
+  const removePictogramFromLocalStorage = (word) => {
+    let storedPictograms = JSON.parse(localStorage.getItem("customPictograms")) || [];
+    storedPictograms = storedPictograms.filter((pictogram) => pictogram.word !== word);
+    localStorage.setItem("customPictograms", JSON.stringify(storedPictograms));
+  };
+
+  // Agregar pictograma al DOM
+  const addPictogramToDOM = ({ src, word }) => {
+    const col = document.createElement("div");
+    col.className = "col col-lg-1 text-center position-relative";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = word;
+    img.className = "pictograma n1 bg-orange-pastel";
+    img.dataset.word = word;
+    img.width = 80;
+
+    const p = document.createElement("p");
+    p.className = "fw-bold text-center parrafos";
+    p.textContent = word;
+
+    // Botón para eliminar el pictograma
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "btn-close position-absolute top-0 end-0";
+    deleteBtn.setAttribute("aria-label", "Eliminar");
+    deleteBtn.addEventListener("click", () => {
+      removePictogramFromLocalStorage(word); // Eliminar del localStorage
+      col.remove(); // Eliminar del DOM
+    });
+
+    col.appendChild(img);
+    col.appendChild(p);
+    col.appendChild(deleteBtn);
+    pictogramContainer.appendChild(col);
+  };
+
+  // Evento para abrir el selector de archivos
+  addPictogramBtn.addEventListener("click", () => {
+    pictogramInput.click();
+  });
+
+  // Evento para procesar la imagen seleccionada
+  pictogramInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const src = e.target.result;
+        const word = prompt("Ingrese la palabra para el pictograma:");
+        if (word) {
+          const pictogram = { src, word };
+          addPictogramToDOM(pictogram);
+          savePictogramToLocalStorage(pictogram);
+        }
+      };
+      reader.readAsDataURL(file);
+
+      // Reiniciar el valor del input para futuras selecciones
+      pictogramInput.value = '';
+    }
+  });
+
+  loadPictograms(); // Cargar pictogramas al inicio
+});
+
+
+          </script>
+          
+    
+    <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9SKddQX2zglP4WLP6U6Cq4U4ZV7eQ3FzyK0ttf8TZJ7dbP68S46" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-w76AibP9gyb2EGG4x5fOU0MAtcU0Kv3pF4/7Xrrd3NH4phMzE4XzN2XyK5gHfN9Yb" crossorigin="anonymous"></script>
+
+ </body>
+</html>

@@ -33,17 +33,18 @@
     
     /* Updated header styles */
     .header {
-      background: linear-gradient(45deg, #f53a3a, #FFB347);
-      color: white;
-      padding: 1rem;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: visible; /* Changed from hidden to visible */
-      z-index: 100; /* Added z-index to create stacking context */
-    }
+    background: linear-gradient(45deg, #f53a3a, #FFB347);
+    color: white;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Cambiado a sticky */
+    top: 0; /* Define el desplazamiento inicial desde el borde superior */
+    z-index: 100; /* Asegura que el header esté por encima del contenido */
+}
+
     
     .header::before {
       content: '';
@@ -181,6 +182,19 @@
       color: #ffffff;
       transform: translateY(-2px);
       border-color: white;
+    }
+    .section-title {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 1rem; /* Reduced from 3rem to 2rem */
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #f53a3a, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 10px;
     }
     
     @media (max-width: 768px) {
@@ -1081,6 +1095,14 @@
   .apps{
     display: none;
   }
+  .portada{
+    margin-left: 10px;
+    font-size: 33px;
+  }
+  .intro-title {
+    font-size: 30px;
+  }
+  
 }
 html {
             scroll-behavior: smooth; /* Desplazamiento suave */
@@ -1138,7 +1160,7 @@ html {
             <circle cx="160" cy="140" r="10" fill="#FFB347" opacity="0.6"/>
           </svg>
 
-          <span>PictoComunica</span>
+           <h2 class="portada"> PictoComunica</h2>
         </div>
         <button class="mobile-menu-toggle">
           
@@ -1277,7 +1299,7 @@ html {
   
       <section class="sections" id="app-info">
         <h2 class="section-title fw-bold">Nuestra Aplicación de Comunicación</h2>
-        <div style="max-width: 1050px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+        <div style="max-width: 1150px; margin: 0 auto; text-align: center; padding: 0 2rem;">
           <p style=" line-height: 1.8; margin-bottom: 2rem; color: #444;" class="par">
             PictoComunica es una innovadora aplicación diseñada específicamente para niños con TEA, 
             que facilita la comunicación mediante un sistema intuitivo de pictogramas y tableros 
@@ -1285,7 +1307,7 @@ html {
             fortaleciendo los lazos comunicativos entre los niños y su entorno. <br>
             Adapta los tableros según las necesidades específicas de cada niño,
             interfaz amigable y fácil de usar tanto para niños como para cuidadores, 
-            Crece y se adapta al desarrollo y progreso del niño
+            crece y se adapta al desarrollo y progreso del niño.
           </p>
          
           <!-- New Call-to-Action Section -->
@@ -1295,7 +1317,7 @@ html {
             <p class="par">Descubre cómo nuestra aplicación puede transformar la comunicación de tu ser querido. Contáctanos ahora para una demostración personalizada.</p>
            <img class="img-fluid apps" src="./imagenes/pictoca.PNG" alt="">
            
-            <a class="pictowt apps mt-3 " href="https://wa.me/542616246767" 
+            <a class="pictowt apps mt-3 " href="./indexpicto.html" 
                target="_blank" 
                rel="noopener noreferrer">
               
@@ -1310,7 +1332,7 @@ html {
       
       <section class="sections app" id="app-info">
         <h2 class="section-title fw-bold">Nuestra Aplicación de Comunicación</h2>
-        <div style="max-width: 1050px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+        <div style="max-width: 1150px; margin: 0 auto; text-align: center; padding: 0 2rem;">
           <p style=" line-height: 1.8; margin-bottom: 2rem; color: #444;" class="par">
             PictoComunica es una innovadora aplicación diseñada específicamente para niños con TEA, 
             que facilita la comunicación mediante un sistema intuitivo de pictogramas y tableros 
@@ -1318,7 +1340,7 @@ html {
             fortaleciendo los lazos comunicativos entre los niños y su entorno. <br>
             Adapta los tableros según las necesidades específicas de cada niño,
             interfaz amigable y fácil de usar tanto para niños como para cuidadores, 
-            Crece y se adapta al desarrollo y progreso del niño
+            crece y se adapta al desarrollo y progreso del niño.
           </p>
          
           <!-- New Call-to-Action Section -->

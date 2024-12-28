@@ -1,0 +1,357 @@
+<html  lang="en">
+  <head>
+  <title>Herramientas de Autorregulación</title>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+     
+  <link rel="icon" type="image/jpg" href="./imagenes/caragrande.png"/>
+  <style>
+  :root {
+    --primary: #FFD93D;
+    --secondary: #FFB347;
+    --accent: #FFD93D;
+    --text: #2d3748;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.5;
+    color: var(--text);
+    background: white;
+    text-align: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+  
+  header {
+    background: linear-gradient(45deg, #f53a3a, #FFB347);
+    color: white;
+    padding: 0.2rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  h1 {
+    flex-grow: 1;
+    text-align: center;
+    padding-right: 55px; /* To balance the home icon space */
+  }
+  
+  .home-icon {
+    width: 40px;
+    height: 40px;
+    fill: white;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .breathing-circle {
+    width: 200px;
+    height: 200px;
+    background: var(--secondary);
+    border-radius: 50%;
+    margin: 1rem auto;
+    animation: breathe 8s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+  }
+  
+  .small-circle {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    animation: orbit 12s infinite linear;
+  }
+  
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+  }
+  
+  .breathing-text {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: #f53a3a,
+  }
+  
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+      background: var(--secondary);
+    }
+    50% {
+      transform: scale(1.2);
+      background: var(--accent);
+    }
+  }
+  
+  .emotion-tracker {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+  }
+  
+  .emotion-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .emotion-btn {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #f53a3a, #FFB347);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .emotion-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .emotion-entry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: #f0f0f0;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+  }
+  
+  .delete-btn {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+  }
+  
+  #emotionLog {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      padding: 0.5rem;
+    }
+    
+    .breathing-circle {
+      width: 180px;
+      height: 180px;
+      font-size: 1.2rem;
+    }
+  
+    .breathing-text {
+      font-size: 1.5rem;
+    }
+  
+    .emotion-tracker {
+      padding: 1rem;
+    }
+  
+    .emotion-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 0.5rem;
+    }
+  
+    .emotion-btn {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      width: 95%;
+      padding: 0.3rem;
+    }
+   h1{
+      font-size: 23px;
+      text-align: center;
+      padding-left: 27px;
+   }
+    .breathing-circle {
+      width: 150px;
+      height: 150px;
+      font-size: 1rem;
+    }
+  
+    .breathing-text {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  
+    .emotion-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.3rem;
+    }
+  
+    .emotion-btn {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+    .home-icon{
+      display: none;
+    }
+   
+  }
+  @media (max-width: 480px) {
+    .small-circle {
+      display: none;
+    }
+    .emotion-btn {
+      padding: 0.3rem;
+      font-size: 0.9rem;
+    }
+    }
+  </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+         <a href="./indexpicto.html"><svg class="home-icon" viewBox="0 0 24 24" onclick="window.location.href='/'">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg></a> 
+          <h1>Herramientas de Autorregulación</h1>
+        </div>
+      
+      </div>
+    </header>
+  
+    <main class="container">
+      <section>
+        <h2>Ejercicio de Respiración</h2>
+        <div class="breathing-circle" id="breathingCircle">
+          <div class="small-circle"></div>
+          Haz clic para comenzar
+        </div>
+        <div class="breathing-text" id="breathingText">
+          Respira conmigo
+        </div>
+      </section>
+  
+      <section class="emotion-tracker">
+        <h2>Registro de Emociones</h2>
+        <p>¿Cómo te sientes ahora?</p>
+        <div class="emotion-buttons">
+          <button class="emotion-btn">😊 Feliz</button>
+          <button class="emotion-btn">😔 Triste</button>
+          <button class="emotion-btn">😠 Enojado</button>
+          <button class="emotion-btn">😰 Ansioso</button>
+          <button class="emotion-btn">😌 Tranquilo</button>
+        </div>
+        <div id="emotionLog"></div>
+      </section>
+    </main>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Breathing Exercise
+    const breathingCircle = document.getElementById('breathingCircle');
+    const breathingText = document.getElementById('breathingText');
+    let isBreathing = false;
+  
+    function startBreathingCycle() {
+      if (!isBreathing) {
+        isBreathing = true;
+        let cycle = 0;
+        
+        function updateBreathing() {
+          if (cycle % 2 === 0) {
+            breathingCircle.textContent = "Inhala";
+            breathingText.textContent = "Inhala";
+          } else {
+            breathingCircle.textContent = "Exhala";
+            breathingText.textContent = "Exhala";
+          }
+          cycle++;
+        }
+  
+        updateBreathing();
+        const breathingInterval = setInterval(() => {
+          updateBreathing();
+        }, 4000);
+  
+        setTimeout(() => {
+          clearInterval(breathingInterval);
+          breathingCircle.textContent = "Haz clic para comenzar";
+          breathingText.textContent = "Respira conmigo";
+          isBreathing = false;
+        }, 40000);
+      }
+    }
+  
+    breathingCircle.addEventListener('click', startBreathingCycle);
+  
+    // Emotion Tracking
+    const emotionButtons = document.querySelectorAll('.emotion-btn');
+    const emotionLog = document.getElementById('emotionLog');
+    
+    emotionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const timestamp = new Date().toLocaleTimeString();
+        const emotion = button.textContent;
+        
+        const logEntry = document.createElement('div');
+        logEntry.className = 'emotion-entry';
+        
+        const textSpan = document.createElement('span');
+        textSpan.textContent = `${timestamp}: ${emotion}`;
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-btn';
+        deleteButton.textContent = '×';
+        deleteButton.onclick = () => logEntry.remove();
+        
+        logEntry.appendChild(textSpan);
+        logEntry.appendChild(deleteButton);
+        emotionLog.prepend(logEntry);
+      });
+    });
+  });
+  </script>
+  </body>
+  </html>
