@@ -85,6 +85,8 @@ const ids = {
         'triste': 'triste',
         'jugar': 'jugar',
         'Natalia': 'Natalia',
+        'cuándo': 'cuándo',
+      
         
        
         
